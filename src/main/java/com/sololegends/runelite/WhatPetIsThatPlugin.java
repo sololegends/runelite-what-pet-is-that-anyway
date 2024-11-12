@@ -9,7 +9,6 @@ import com.google.inject.Provides;
 import lombok.extern.slf4j.Slf4j;
 import net.runelite.api.*;
 import net.runelite.api.events.GameStateChanged;
-import net.runelite.api.events.GameTick;
 import net.runelite.client.config.ConfigManager;
 import net.runelite.client.eventbus.Subscribe;
 import net.runelite.client.game.ItemManager;
@@ -98,10 +97,6 @@ public class WhatPetIsThatPlugin extends Plugin {
 			default:
 				break;
 		}
-	}
-
-	@Subscribe
-	public void onGameTick(GameTick event) {
 	}
 
 	@Provides
