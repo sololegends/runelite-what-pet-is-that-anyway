@@ -43,6 +43,10 @@ public class WhatPetIsThatPlugin extends Plugin {
 	protected void startUp() throws Exception {
 		log.info("Starting What's that pet anyway");
 		overlay_manager.add(pet_overlay);
+		// Check if game already started
+		if (client.getGameState().equals(GameState.LOGGED_IN)) {
+			startup();
+		}
 	}
 
 	@Override
