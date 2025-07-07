@@ -8,7 +8,7 @@ import com.google.inject.Inject;
 
 import net.runelite.api.Client;
 import net.runelite.api.Point;
-import net.runelite.api.widgets.ComponentID;
+import net.runelite.api.gameval.InterfaceID;
 import net.runelite.api.widgets.Widget;
 import net.runelite.client.ui.overlay.*;
 import net.runelite.client.ui.overlay.tooltip.Tooltip;
@@ -81,7 +81,8 @@ public class WhatPetIsThatOverlay extends Overlay {
 		}
 		Point mouse_pos = client.getMouseCanvasPosition();
 		// Get the chat box lines
-		Widget message_lines = client.getWidget(ComponentID.CHATBOX_MESSAGE_LINES);
+
+		Widget message_lines = client.getWidget(InterfaceID.Chatbox.SCROLLAREA);
 		if (message_lines == null || !message_lines.contains(mouse_pos)) {
 			return;
 		}

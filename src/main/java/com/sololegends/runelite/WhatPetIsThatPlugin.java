@@ -9,6 +9,7 @@ import com.google.inject.Provides;
 import lombok.extern.slf4j.Slf4j;
 import net.runelite.api.*;
 import net.runelite.api.events.GameStateChanged;
+import net.runelite.client.callback.ClientThread;
 import net.runelite.client.config.ConfigManager;
 import net.runelite.client.eventbus.Subscribe;
 import net.runelite.client.game.ItemManager;
@@ -19,7 +20,7 @@ import net.runelite.client.util.AsyncBufferedImage;
 import net.runelite.client.util.ImageUtil;
 
 @Slf4j
-@PluginDescriptor(name = "What Pet is that Anyway", description = "Shows the pet name on hover from the !pets command", tags = {
+@PluginDescriptor(name = "What Pet is that Anyway", description = "Shows the pet name on hover from the !pets command.", tags = {
 		"pets", "pet", "identify", "command", "help", "icon" })
 @PluginDependency(ChatCommandsPlugin.class)
 public class WhatPetIsThatPlugin extends Plugin {
@@ -29,6 +30,9 @@ public class WhatPetIsThatPlugin extends Plugin {
 
 	@Inject
 	private Client client;
+
+	@Inject
+	private ClientThread client_thread;
 
 	@Inject
 	private WhatPetIsThatOverlay pet_overlay;
@@ -45,7 +49,8 @@ public class WhatPetIsThatPlugin extends Plugin {
 		overlay_manager.add(pet_overlay);
 		// Check if game already started
 		if (client.getGameState().equals(GameState.LOGGED_IN)) {
-			startup();
+			// INvoke in client thread
+			client_thread.invoke(() -> startup());
 		}
 	}
 
