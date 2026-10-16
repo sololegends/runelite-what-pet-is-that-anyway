@@ -14,7 +14,6 @@ import net.runelite.client.config.ConfigManager;
 import net.runelite.client.eventbus.Subscribe;
 import net.runelite.client.game.ItemManager;
 import net.runelite.client.plugins.*;
-import net.runelite.client.plugins.chatcommands.ChatCommandsPlugin;
 import net.runelite.client.ui.overlay.OverlayManager;
 import net.runelite.client.util.AsyncBufferedImage;
 import net.runelite.client.util.ImageUtil;
@@ -22,7 +21,6 @@ import net.runelite.client.util.ImageUtil;
 @Slf4j
 @PluginDescriptor(name = "What Pet is that Anyway", description = "Shows the pet name on hover from the !pets command.", tags = {
 		"pets", "pet", "identify", "command", "help", "icon" })
-@PluginDependency(ChatCommandsPlugin.class)
 public class WhatPetIsThatPlugin extends Plugin {
 
 	public int pets_icons_offset = -1;
